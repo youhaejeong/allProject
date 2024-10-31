@@ -1,0 +1,91 @@
+server:
+  port: 8010 #애플리케이션이 사용할 포트번호 포트번호 중복되지않게 사용 
+  servlet: #servlet 설정
+    context-path: / #application 의 기본 경로를 /로 설정
+    encoding:
+      charset: UTF-8 #문자의 인코딩을 UTF-8로 설정
+      enabled: true
+      force: true
+    session:
+      timeout: 604800
+      persistent: true #지속적인 세션유지 활성화 
+      store-dir: "../session" #세션데이터 저장 디렉토리
+      cookie:
+        max-age: 3600 #최대 수명(max-age)은 3600초(1시간)로 설정
+  error:
+    include-message: always #에러 응답에 메시지를 항상 포함
+
+
+spring:
+  mail :
+    host : smtp.gmail.com
+    port : 587
+    username : 'brightendevelopers'
+    password : 'ptewsvpxezxxuvxh'
+    properties :
+      mail :
+          smtp :
+              auth : true
+              starttls :
+                  enable : true
+
+  datasource:
+# dev 81
+   driver-class-name: org.mariadb.jdbc.Driver
+   url: jdbc:mariadb://localhost:3306/test?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+   username: root
+   password: qwer
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true #HiddenHttpMethodFilter는 HTML 폼에서 HTTP 메소드를 오버라이드하여 PUT 또는 DELETE와 같은 다른 HTTP 메소드를 시뮬레이션하는 데 사용
+    view: #view resolver 설정
+      prefix: /WEB-INF/jsp #jsp 파일의 디렉터리 경로 지정
+      suffix: .jsp #jsp 확장자 지정 
+
+
+
+
+  output:
+    ansi:
+      enabled: always #콘솔 로그 컬러풀하게
+
+  servlet: #파일업로드 관련 용량설정 
+    multipart:
+      # enabled: true #멀티파트 요청 처리가 활성화 스프링부트에서 기분적으로 활성화되기때문에 주석
+      file-size-threshold: 1MB #메모리에 저장하기전 파일을 디스크에 저장하는 기준 크기 1MB
+      max-file-size: 100MB #업로드 될수 있는 파일의 최대크기
+      max-request-size: 200MB #요청 자체의 최대 허용 크기
+
+#   jpa:
+#     show-sql: false
+#     database: mysql
+#     hibernate:
+#       ddl-auto: none
+#       naming:
+#         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+
+mybatis:
+  configuration: #mybatis 설정 
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # MyBatis의 실행 쿼리를 콘솔에 출력
+    map-underscore-to-camel-case: true #mybatis가 데이터베이스의 칼럼 명을 자바의 카멜 케이스 명명규칙으로 매핑
+  mapper-locations: #매퍼 파일 위치 
+  - classpath:mapper/*.xml
+
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+      multiline: true
+
+upload:
+  path: ../upload
+
+log:
+  config:
+    path: ./logs
+    filename: logback
+    maxHistory: 30
+    totalSizeCap: 1GB
