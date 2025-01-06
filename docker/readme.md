@@ -1,6 +1,6 @@
 # 도커를 이용한 배포방법
 
-#### [도커로 배포시 DB연결 주의사항](https://gitlab.brighten.co.kr/lgh/deloy_with_docker/-/blob/main/database.md)
+#### [도커로 배포시 DB연결 주의사항](https://github.com/youhaejeong/allProject/blob/main/docker/database.md)
 
 #### maven install 시 maven test 가 fail 될시 test skip 구문을 pom.xml 에 추가하고 진행한다
 ```
